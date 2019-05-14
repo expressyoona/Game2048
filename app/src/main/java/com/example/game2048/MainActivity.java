@@ -16,7 +16,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        smallButton = (Button) findViewById(R.id.smallButton);
+        Intent intent = new Intent(MainActivity.this, NormalGame.class);
+        startActivity(intent);
+
+        /*smallButton = (Button) findViewById(R.id.smallButton);
         smallButton.setOnClickListener(this);
 
         normalButton = (Button) findViewById(R.id.normalButton);
@@ -24,13 +27,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         hugeButton = (Button) findViewById(R.id.hugeButton);
         hugeButton.setOnClickListener(this);
-
+*/
 
     }
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(this, "Clicked button", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Clicked button", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(MainActivity.this, NormalGame.class);
         startActivity(intent);
     }

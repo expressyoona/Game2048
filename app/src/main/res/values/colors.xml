@@ -15,4 +15,7 @@
     <color name="_512point">#e4c02a</color>
     <color name="_1024point">#ebc318</color>
     <color name="_2048point">#5fd992</color>
+    <color name="boardBackground">#bbad9f</color>
+    <color name="appBackground">#ffffff</color>
+    <color name="textColor">#ffffff</color>
 </resources>
