@@ -9,6 +9,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class NormalGame extends AppCompatActivity {
     int n = 4;
     Random random;
     TextView txtScore;
+    ImageView x;
     long score;
 
     private float x1, x2, y1, y2;
@@ -34,6 +36,8 @@ public class NormalGame extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_game);
+
+
 
         board = new Button[n][n];
         random = new Random();
@@ -118,24 +122,36 @@ public class NormalGame extends AppCompatActivity {
                     if (x1 > x2) {
                         moveLeft();
                         if (isFull()) {
+                            System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println("Chưa thua");
                         }
                     } else if (x1 < x2) {
                         moveRight();
                         if (isFull()) {
+                            System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println("Chưa thua");
                         }
                     }
                 } else  if (Math.abs(deltaY) > MIN_DISTANCE){
                     if (y1 > y2) {
                         moveUp();
                         if (isFull()) {
+                            System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println("Chưa thua");
                         }
                     } else if (y1 < y2) {
                         moveDown();
                         if (isFull()) {
+                            System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            System.out.println("Chưa thua");
                         }
                     }
                 }
@@ -155,47 +171,43 @@ public class NormalGame extends AppCompatActivity {
     }
 
     public void moveRight() {
-        System.out.println("Moved right");
         rotate270();
         moveCellsUp();
         rotate90();
         refresh();
         generate();
         //View for debug
-        view();
+        //view();
     }
 
     public void moveLeft() {
-        System.out.println("Moved left");
         rotate90();
         moveCellsUp();
         rotate270();
         refresh();
         generate();
         //View for debug
-        view();
+        //view();
     }
 
     public void moveDown() {
-        System.out.println("Moved down");
         rotate180();
         moveCellsUp();
         rotate180();
         refresh();
         generate();
         //View for debug
-        view();
+        //view();
     }
 
 
     public void moveUp() {
-        System.out.println("Moved up");
         //Move Cell Ups
         moveCellsUp();
         refresh();
         generate();
         //View for debug
-        view();
+        //view();
     }
 
     private void view() {
