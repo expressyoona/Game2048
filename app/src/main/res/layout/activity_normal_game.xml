@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     android:background="@color/appBackground">
     <TableRow
-        android:gravity="center_horizontal">
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center_horizontal" >
 
         <TextView
             android:id="@+id/score"
             android:layout_width="wrap_content"
-            android:fontFamily="@font/aclonica"
+            android:fontFamily="@font/archivo_black"
             android:text="0"
             android:textAlignment="center"
             android:textColor="@android:color/black"
@@ -24,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/boardBackground"
+        android:background="@drawable/board"
         android:gravity="center_horizontal"
         tools:context=".NormalGame">
 
@@ -34,40 +36,44 @@
             android:layout_marginRight="10dp"
             android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/cell_1"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="36sp" />
 
-            <Button
+            <TextView
                 android:id="@+id/cell_2"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="36sp" />
 
-            <Button
+            <TextView
                 android:id="@+id/cell_3"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_4"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
         </TableRow>
 
@@ -76,40 +82,44 @@
             android:layout_marginRight="10dp"
             android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/cell_5"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_6"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_7"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_8"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
         </TableRow>
 
@@ -118,40 +128,44 @@
             android:layout_marginRight="10dp"
             android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/cell_9"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_10"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_11"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textColor="@color/textColor"
                 android:textSize="36sp" />
 
-            <Button
+            <TextView
                 android:id="@+id/cell_12"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp" />
         </TableRow>
 
@@ -161,50 +175,45 @@
             android:layout_marginBottom="10dp"
             android:gravity="center">
 
-            <Button
+            <TextView
                 android:id="@+id/cell_13"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
 
-            <Button
+            <TextView
                 android:id="@+id/cell_14"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp" />
 
-            <Button
+            <TextView
                 android:id="@+id/cell_15"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp" />
 
-            <Button
+            <TextView
                 android:id="@+id/cell_16"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="5dp"
                 android:textColor="@color/textColor"
                 android:background="@color/_0point"
+                android:gravity="center"
                 android:textSize="36sp"/>
         </TableRow>
-
     </TableLayout>
-    <TableRow>
-
-        <TextView
-            android:id="@+id/joystick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/joystick"/>
-    </TableRow>
 </TableLayout>

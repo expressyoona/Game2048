@@ -1,30 +1,22 @@
 package com.example.game2048;
 
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Vector;
 
 public class NormalGame extends AppCompatActivity {
 
-    Button[][] board;
+    TextView[][] board;
     int[][] arr;
     int n = 4;
     Random random;
     TextView txtScore;
-    ImageView x;
+    TextView x;
     long score;
 
     private float x1, x2, y1, y2;
@@ -37,9 +29,7 @@ public class NormalGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_normal_game);
 
-
-
-        board = new Button[n][n];
+        board = new TextView[n][n];
         random = new Random();
         txtScore = findViewById(R.id.score);
         txtScore.setText("0");
@@ -58,27 +48,28 @@ public class NormalGame extends AppCompatActivity {
         color.put("512", ContextCompat.getColor(getApplicationContext(), R.color._512point));
         color.put("1024", ContextCompat.getColor(getApplicationContext(), R.color._1024point));
         color.put("2048", ContextCompat.getColor(getApplicationContext(), R.color._2048point));
+        color.put("4096", ContextCompat.getColor(getApplicationContext(), R.color._4096point));
 
 
-        board[0][0] = (Button) findViewById(R.id.cell_1);
-        board[0][1] = (Button) findViewById(R.id.cell_2);
-        board[0][2] = (Button) findViewById(R.id.cell_3);
-        board[0][3] = (Button) findViewById(R.id.cell_4);
+        board[0][0] = (TextView) findViewById(R.id.cell_1);
+        board[0][1] = (TextView) findViewById(R.id.cell_2);
+        board[0][2] = (TextView) findViewById(R.id.cell_3);
+        board[0][3] = (TextView) findViewById(R.id.cell_4);
 
-        board[1][0] = (Button) findViewById(R.id.cell_5);
-        board[1][1] = (Button) findViewById(R.id.cell_6);
-        board[1][2] = (Button) findViewById(R.id.cell_7);
-        board[1][3] = (Button) findViewById(R.id.cell_8);
+        board[1][0] = (TextView) findViewById(R.id.cell_5);
+        board[1][1] = (TextView) findViewById(R.id.cell_6);
+        board[1][2] = (TextView) findViewById(R.id.cell_7);
+        board[1][3] = (TextView) findViewById(R.id.cell_8);
 
-        board[2][0] = (Button) findViewById(R.id.cell_9);
-        board[2][1] = (Button) findViewById(R.id.cell_10);
-        board[2][2] = (Button) findViewById(R.id.cell_11);
-        board[2][3] = (Button) findViewById(R.id.cell_12);
+        board[2][0] = (TextView) findViewById(R.id.cell_9);
+        board[2][1] = (TextView) findViewById(R.id.cell_10);
+        board[2][2] = (TextView) findViewById(R.id.cell_11);
+        board[2][3] = (TextView) findViewById(R.id.cell_12);
 
-        board[3][0] = (Button) findViewById(R.id.cell_13);
-        board[3][1] = (Button) findViewById(R.id.cell_14);
-        board[3][2] = (Button) findViewById(R.id.cell_15);
-        board[3][3] = (Button) findViewById(R.id.cell_16);
+        board[3][0] = (TextView) findViewById(R.id.cell_13);
+        board[3][1] = (TextView) findViewById(R.id.cell_14);
+        board[3][2] = (TextView) findViewById(R.id.cell_15);
+        board[3][3] = (TextView) findViewById(R.id.cell_16);
 
         arr = new int[n][n];
 
@@ -121,7 +112,7 @@ public class NormalGame extends AppCompatActivity {
                 if (Math.abs(deltaX) > MIN_DISTANCE) {
                     if (x1 > x2) {
                         moveLeft();
-                        if (isFull()) {
+                        if (isLose()) {
                             System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -129,7 +120,7 @@ public class NormalGame extends AppCompatActivity {
                         }
                     } else if (x1 < x2) {
                         moveRight();
-                        if (isFull()) {
+                        if (isLose()) {
                             System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -139,7 +130,7 @@ public class NormalGame extends AppCompatActivity {
                 } else  if (Math.abs(deltaY) > MIN_DISTANCE){
                     if (y1 > y2) {
                         moveUp();
-                        if (isFull()) {
+                        if (isLose()) {
                             System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -147,7 +138,7 @@ public class NormalGame extends AppCompatActivity {
                         }
                     } else if (y1 < y2) {
                         moveDown();
-                        if (isFull()) {
+                        if (isLose()) {
                             System.out.println("Thua");
                             Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
@@ -243,7 +234,18 @@ public class NormalGame extends AppCompatActivity {
         return random.nextInt((max - min + 1)) + min;
     }
 
-    public boolean isFull() {
+    boolean isFull() {
+        for(int i = 0;i < n;i++) {
+            for(int j = 0;j < n;j++) {
+                if (board[i][j].getText().toString().equals("")) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public boolean isLose() {
         for(int i = 0;i < n;i++) {
             for(int j = 0;j < n;j++) {
                 if (board[i][j].getText().toString().equals("")) {
@@ -277,7 +279,7 @@ public class NormalGame extends AppCompatActivity {
     }
 
     public void generate() {
-        while(true) {
+        while(!isFull()) {
             int r = this.getRandom(0, n - 1);
             int c = this.getRandom(0, n - 1);
             if (board[r][c].getText().equals("")) {

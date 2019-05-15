@@ -13,9 +13,10 @@
     <color name="_128point">#edcf72</color>
     <color name="_256point">#f0cf4b</color>
     <color name="_512point">#e4c02a</color>
-    <color name="_1024point">#ebc318</color>
-    <color name="_2048point">#5fd992</color>
+    <color name="_1024point">#ecc43e</color>
+    <color name="_2048point">#ebc318</color>
+    <color name="_4096point">#5fd992</color>
     <color name="boardBackground">#bbad9f</color>
-    <color name="appBackground">#ffffff</color>
+    <color name="appBackground">#fdf4eb</color>
     <color name="textColor">#ffffff</color>
 </resources>

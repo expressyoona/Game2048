@@ -9,25 +9,18 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button smallButton, normalButton, hugeButton;
+    Button btnPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(MainActivity.this, NormalGame.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(MainActivity.this, NormalGame.class);
+        startActivity(intent);*/
 
-        /*smallButton = (Button) findViewById(R.id.smallButton);
-        smallButton.setOnClickListener(this);
-
-        normalButton = (Button) findViewById(R.id.normalButton);
-        normalButton.setOnClickListener(this);
-
-        hugeButton = (Button) findViewById(R.id.hugeButton);
-        hugeButton.setOnClickListener(this);
-*/
+        btnPlay = findViewById(R.id.btnStart);
+        btnPlay.setOnClickListener(this);
 
     }
 
