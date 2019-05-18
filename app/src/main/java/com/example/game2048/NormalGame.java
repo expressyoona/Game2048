@@ -283,9 +283,10 @@ public class NormalGame extends AppCompatActivity {
             int r = this.getRandom(0, n - 1);
             int c = this.getRandom(0, n - 1);
             if (board[r][c].getText().equals("")) {
-                board[r][c].setText("2");
-                board[r][c].setBackgroundColor(color.get("2"));
-                arr[r][c] = 2;
+                int v = getRandom(1, 2) * 2;
+                board[r][c].setText(v + "");
+                board[r][c].setBackgroundColor(color.get("" + v));
+                arr[r][c] = v;
                 return ;
             }
         }
