@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/table_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appBackground">
     <TableRow
-        android:paddingTop="10dp"
+        android:paddingTop="20dp"
         android:paddingBottom="10dp"
         android:gravity="center_horizontal" >
 
@@ -16,7 +17,8 @@
             android:text="0"
             android:textAlignment="center"
             android:textColor="@android:color/black"
-            android:textSize="50sp" />
+            android:textSize="40sp" />
+
     </TableRow>
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/board"
         android:gravity="center_horizontal"
         tools:context=".NormalGame">
@@ -215,5 +218,6 @@
                 android:gravity="center"
                 android:textSize="36sp"/>
         </TableRow>
+
     </TableLayout>
 </TableLayout>

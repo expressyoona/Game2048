@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@drawable/popup">
+
+    <TextView
+        android:id="@+id/highscoreTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/aclonica"
+        android:text="Best Score:"/>
+
+    <TextView
+        android:id="@+id/highScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/highscoreTitle"
+        android:layout_margin="0dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_centerHorizontal="true"
+        android:text="000" />
+
+    <TextView
+        android:id="@+id/yourscoreTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/highScore"
+        android:layout_margin="0dp"
+        android:fontFamily="@font/aclonica"
+        android:textSize="30dp"
+        android:text="Your Score:"/>
+
+    <TextView
+        android:id="@+id/yourScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yourscoreTitle"
+        android:layout_margin="0dp"
+        android:fontFamily="@font/aclonica"
+        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:text="000" />
+
+    <Button
+        android:id="@+id/btnRestart"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/yourScore"
+        android:text="PLAY AGAIN"
+        android:fontFamily="@font/archivo_black"
+        android:background="@drawable/mybutton"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"/>
+</RelativeLayout>

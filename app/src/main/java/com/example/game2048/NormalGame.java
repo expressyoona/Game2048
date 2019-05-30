@@ -1,9 +1,19 @@
 package com.example.game2048;
 
+import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.HashMap;
@@ -17,12 +27,59 @@ public class NormalGame extends AppCompatActivity {
     Random random;
     TextView txtScore;
     TextView x;
-    long score;
+    int score;
+    TableLayout tableLayout;
 
     private float x1, x2, y1, y2;
     static final int MIN_DISTANCE = 150;
-
+    public static final String MY_PREFS = "HIGHEST_SCORE";
+    MediaPlayer mp;
     HashMap<String, Integer> color;
+
+    public void showPopupWindow(View view) {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.popup_window, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true;
+
+        TextView currentScore = popupView.findViewById(R.id.yourScore);
+        currentScore.setText(score + "");
+
+        TextView highestScore = popupView.findViewById(R.id.highScore);
+
+        SharedPreferences pref = getSharedPreferences(MY_PREFS, MODE_PRIVATE);
+
+
+            int h = pref.getInt("SCORE", 0);
+            if (h != 0) {
+                highestScore.setText(h + "");
+            }
+
+        int highest = Integer.parseInt(highestScore.getText().toString());
+        if (highest < score) {
+            //Save the score
+            SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS, MODE_PRIVATE).edit();
+            editor.putInt("SCORE", score);
+            //editor.apply();
+            editor.commit();
+        }
+
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        Button restart = popupView.findViewById(R.id.btnRestart);
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rematch();
+                popupWindow.dismiss();
+            }
+        });
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +90,15 @@ public class NormalGame extends AppCompatActivity {
         random = new Random();
         txtScore = findViewById(R.id.score);
         txtScore.setText("0");
+        txtScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPopupWindow(tableLayout);
+            }
+        });
         score = 0;
+        tableLayout = findViewById(R.id.table_layout);
+        mp = MediaPlayer.create(getApplicationContext(), R.raw.merge);
 
         color = new HashMap<>();
         color.put("0", ContextCompat.getColor(getApplicationContext(), R.color._0point));
@@ -73,8 +138,11 @@ public class NormalGame extends AppCompatActivity {
 
         arr = new int[n][n];
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/ClearSans.ttf");
+
         for(int i = 0;i < n;i++) {
             for(int j = 0;j < n;j++) {
+                board[i][j].setTypeface(typeface);
                 board[i][j].setText("");
                 board[i][j].setBackgroundColor(color.get("0"));
                 arr[i][j] = 0;
@@ -113,36 +181,40 @@ public class NormalGame extends AppCompatActivity {
                     if (x1 > x2) {
                         moveLeft();
                         if (isLose()) {
-                            System.out.println("Thua");
-                            Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            //System.out.println("Thua");
+                            //Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            showPopupWindow(tableLayout);
                         } else {
-                            System.out.println("Chưa thua");
+                            //System.out.println("Chưa thua");
                         }
                     } else if (x1 < x2) {
                         moveRight();
                         if (isLose()) {
-                            System.out.println("Thua");
-                            Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            //System.out.println("Thua");
+                            //Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            showPopupWindow(tableLayout);
                         } else {
-                            System.out.println("Chưa thua");
+                            //System.out.println("Chưa thua");
                         }
                     }
                 } else  if (Math.abs(deltaY) > MIN_DISTANCE){
                     if (y1 > y2) {
                         moveUp();
                         if (isLose()) {
-                            System.out.println("Thua");
-                            Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            showPopupWindow(tableLayout);
+                            //System.out.println("Thua");
+                            //Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
-                            System.out.println("Chưa thua");
+                            //System.out.println("Chưa thua");
                         }
                     } else if (y1 < y2) {
                         moveDown();
                         if (isLose()) {
-                            System.out.println("Thua");
-                            Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
+                            showPopupWindow(tableLayout);
+                            //System.out.println("Thua");
+                            //Toast.makeText(this, "You losed!", Toast.LENGTH_SHORT).show();
                         } else {
-                            System.out.println("Chưa thua");
+                            //System.out.println("Chưa thua");
                         }
                     }
                 }
@@ -151,6 +223,33 @@ public class NormalGame extends AppCompatActivity {
 
         }
         return super.onTouchEvent(event);
+    }
+
+    private void rematch() {
+        //Clear the matrix
+        for(int i = 0;i < n;i++) {
+            for(int j = 0;j < n;j++) {
+                arr[i][j] = 0;
+                board[i][j].setText("");
+            }
+        }
+
+        for(int i = 0;i < 2;) {
+            int r = this.getRandom(0, n - 1);
+            int c = this.getRandom(0, n - 1);
+
+            if (board[r][c].getText().equals("")) {
+                i++;
+                board[r][c].setText("2");
+                board[r][c].setBackgroundColor(color.get("2"));
+                arr[r][c] = 2;
+            }
+        }
+
+        refresh();
+        score = 0;
+        txtScore.setText("0");
+        System.out.println("Rematch!!!");
     }
 
     private void moveCellsUp() {
@@ -283,8 +382,8 @@ public class NormalGame extends AppCompatActivity {
             int r = this.getRandom(0, n - 1);
             int c = this.getRandom(0, n - 1);
             if (board[r][c].getText().equals("")) {
-                int v = getRandom(1, 2) * 2;
-                board[r][c].setText(v + "");
+                int v = this.getRandom(1, 2) * 2;
+                board[r][c].setText("" + v);
                 board[r][c].setBackgroundColor(color.get("" + v));
                 arr[r][c] = v;
                 return ;
@@ -315,7 +414,8 @@ public class NormalGame extends AppCompatActivity {
 
     public void merge(int j) {
         for(int i = 0;i < n - 1;i++) {
-            if (arr[i][j] == arr[i+1][j]) {
+            if ((arr[i][j] == arr[i+1][j]) && (arr[i][j] != 0)) {
+                mp.start();
                 arr[i][j] *= 2;
                 score += arr[i][j];
                 arr[i+1][j] = 0;
